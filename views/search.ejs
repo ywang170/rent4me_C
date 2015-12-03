@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Search page results</title>
+        <meta name="description" content="company is a free job board template">
+        <meta name="author" content="Ohidul">
+        <meta name="keyword" content="html, css, bootstrap, job-board">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="questionmark.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/fontello.css">
+        <link rel="stylesheet" href="../css/animate.css">        
+        <link rel="stylesheet" href="../bootstrap-3.3.4-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/owl.carousel.css">
+        <link rel="stylesheet" href="../css/owl.theme.css">
+        <link rel="stylesheet" href="../css/owl.transitions.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <script src="../js/modernizr-2.6.2.min.js"></script>
+        
+        <!-- avoiding bootstrap here Do not delete this -->
+        <style>
+        my-input {
+            height: 30px;
+            max-width: 80%;
+        } 
+        </style>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+    <script type="text/javascript">
+        
+        var addrs = [];
+        var sizes = [];
+        var prices = [];
+        var comps = [];
+        /*
+        addrs.push('701S Gregory, IL');
+        addrs.push("1901 N Lincoln, Urbana, IL");
+        addrs.push("1107 S Fourth, Champaign, IL");
+        addrs.push("602 E Stoughton, Urbana, IL");
+        addrs.push("310 E Green, Champaign, IL");
+        addrs.push("609 W Main, Urbana, IL");
+        addrs.push("1901 N Lincoln, Urbana, IL");
+        */
+        /*
+        var sizes = [];
+        sizes.push("3BR");
+        sizes.push("2BR");
+        sizes.push("1BR");
+        sizes.push("4BR");
+        sizes.push("2BR");
+        sizes.push("4BR");
+        */
+        
+        var circles = [];
+        function create_five_min_circle(controlDiv, map, markers) {
+            // Set CSS for the control border.
+            var controlUI = document.createElement('div');
+            controlUI.style.backgroundColor = '#fff';
+            controlUI.style.border = '2px solid #fff';
+            controlUI.style.borderRadius = '3px';
+            controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+            controlUI.style.cursor = 'pointer';
+            controlUI.style.marginBottom = '10px';
+            controlUI.style.marginLeft = '10px';
+            controlUI.style.textAlign = 'center';
+            controlUI.title = 'Click to create a range with 5-min walk';
+            controlDiv.appendChild(controlUI);
+
+            // Set CSS for the control interior.
+            var controlText = document.createElement('div');
+            controlText.style.color = 'rgb(25,25,25)';
+            controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+            controlText.style.fontSize = '12px';
+            controlText.style.lineHeight = '38px';
+            controlText.style.paddingLeft = '5px';
+            controlText.style.paddingRight = '5px';
+            controlText.innerHTML = '5-min walk';
+            controlUI.appendChild(controlText);
+
+            // Setup the click event listeners
+            controlUI.addEventListener('click', function() {
+                range = new google.maps.Circle({
+                    fillOpacity: 0,
+                    strokeWeight: 5,
+                    clickable: false,
+                    editable: true,
+                    zIndex: 1,
+                    map: map,
+                    center: map.getCenter(),
+                    radius: 400
+                });
+                if(circles.length != 0){
+                    var old = circles.pop();
+                    old.setMap(null);
+                }
+                circles.push(range);
+                google.maps.event.addListener(range, 'bounds_changed'||'center_changed', function() {inRange(range,markers,map);});
+                inRange(range,markers,map);
+            });
+        }
+        
+        function create_ten_min_circle(controlDiv, map, markers) {
+            // Set CSS for the control border.
+            var controlUI = document.createElement('div');
+            controlUI.style.backgroundColor = '#fff';
+            controlUI.style.border = '2px solid #fff';
+            controlUI.style.borderRadius = '3px';
+            controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+            controlUI.style.cursor = 'pointer';
+            controlUI.style.marginBottom = '10px';
+            controlUI.style.marginLeft = '10px';
+            controlUI.style.textAlign = 'center';
+            controlUI.title = 'Click to create a range with 10-min walk';
+            controlDiv.appendChild(controlUI);
+
+            // Set CSS for the control interior.
+            var controlText = document.createElement('div');
+            controlText.style.color = 'rgb(25,25,25)';
+            controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+            controlText.style.fontSize = '12px';
+            controlText.style.lineHeight = '38px';
+            controlText.style.paddingLeft = '5px';
+            controlText.style.paddingRight = '5px';
+            controlText.innerHTML = '10-min walk';
+            controlUI.appendChild(controlText);
+
+           // Setup the click event listeners
+            controlUI.addEventListener('click', function() {
+                range = new google.maps.Circle({
+                    fillOpacity: 0,
+                    strokeWeight: 5,
+                    clickable: false,
+                    editable: true,
+                    zIndex: 1,
+                    map: map,
+                    center: map.getCenter(),
+                    radius: 800
+                });
+                if(circles.length != 0){
+                    var old = circles.pop();
+                    old.setMap(null);
+                }
+                circles.push(range);
+                google.maps.event.addListener(range, 'bounds_changed'||'center_changed', function() {inRange(range,markers,map);});
+                inRange(range,markers,map);
+            });
+        }
+        
+        function create_twenty_min_circle(controlDiv, map, markers) {
+            // Set CSS for the control border.
+            var controlUI = document.createElement('div');
+            controlUI.style.backgroundColor = '#fff';
+            controlUI.style.border = '2px solid #fff';
+            controlUI.style.borderRadius = '3px';
+            controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+            controlUI.style.cursor = 'pointer';
+            controlUI.style.marginBottom = '10px';
+            controlUI.style.marginLeft = '10px';
+            controlUI.style.textAlign = 'center';
+            controlUI.title = 'Click to create a range with 20-min walk';
+            controlDiv.appendChild(controlUI);
+
+            // Set CSS for the control interior.
+            var controlText = document.createElement('div');
+            controlText.style.color = 'rgb(25,25,25)';
+            controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+            controlText.style.fontSize = '12px';
+            controlText.style.lineHeight = '38px';
+            controlText.style.paddingLeft = '5px';
+            controlText.style.paddingRight = '5px';
+            controlText.innerHTML = '20-min walk';
+            controlUI.appendChild(controlText);
+
+            // Setup the click event listeners
+            controlUI.addEventListener('click', function() {
+                range = new google.maps.Circle({
+                    fillOpacity: 0,
+                    strokeWeight: 5,
+                    clickable: false,
+                    editable: true,
+                    zIndex: 1,
+                    map: map,
+                    center: map.getCenter(),
+                    radius: 1600
+                });
+                if(circles.length != 0){
+                    var old = circles.pop();
+                    old.setMap(null);
+                }
+                circles.push(range);
+                google.maps.event.addListener(range, 'bounds_changed'||'center_changed', function() {inRange(range,markers,map);});
+                inRange(range,markers,map);
+            });
+        }
+        
+        function delete_circle(controlDiv, map, markers) {
+            // Set CSS for the control border.
+            var controlUI = document.createElement('div');
+            controlUI.style.backgroundColor = '#fff';
+            controlUI.style.border = '2px solid #fff';
+            controlUI.style.borderRadius = '3px';
+            controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+            controlUI.style.cursor = 'pointer';
+            controlUI.style.marginBottom = '10px';
+            controlUI.style.marginLeft = '10px';
+            controlUI.style.textAlign = 'center';
+            controlUI.title = 'Click to remove range';
+            controlDiv.appendChild(controlUI);
+
+            // Set CSS for the control interior.
+            var controlText = document.createElement('div');
+            controlText.style.color = 'rgb(25,25,25)';
+            controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+            controlText.style.fontSize = '12px';
+            controlText.style.lineHeight = '38px';
+            controlText.style.paddingLeft = '5px';
+            controlText.style.paddingRight = '5px';
+            controlText.innerHTML = 'remove range';
+            controlUI.appendChild(controlText);
+
+            // Setup the click event listeners
+            controlUI.addEventListener('click', function() {
+                if(circles.length != 0){
+                    var old = circles.pop();
+                    old.setMap(null);
+                    for(var i=0; i<markers.length; i++)
+                        markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+                }
+            });
+        }
+ 
+        function inRange(range, markers, map){
+            var targets = [];
+            var bounds = range.getBounds();
+            if (bounds != null){
+                var range_center = range.getCenter();
+                var r = range.getRadius();
+                for(var i=0; i<markers.length; i++){
+                    var pos = markers[i].getPosition();
+                    if (bounds.contains(pos) && google.maps.geometry.spherical.computeDistanceBetween(pos, range_center) <= r)
+                        targets.push(markers[i]);
+                    else{   
+                        markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+                        //google.maps.event.addListener(markers[i], 'click', function() {
+                        //    infowindow.open(map,markers[i]);
+                        //});
+                    }
+                }
+                for(var j=0; j<targets.length; j++){
+                    targets[j].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+                    //google.maps.event.addListener(targets[j], 'click', function() {
+                    //    infowindow.open(map,targets[j]);
+                    //});
+                }
+            }
+        }
+        
+        //center the map
+        var geocoder, map, address;
+        function initMap() {
+            var para = document.getElementsByName("adda");
+            var compArr = document.getElementsByName("compa");
+            var priceArr = document.getElementsByName("pricea");
+            var sizeArr = document.getElementsByName("sizea");
+            for(var i =0;i<para.length;i++){
+                console.log(i);
+                if(typeof para[i] != 'undefined'){
+                    addrs.push(para[i].innerHTML+', IL');
+                }
+                if(typeof sizeArr[i] != 'undefined'){
+                    sizes.push(sizeArr[i].innerHTML+'BR');
+                }
+                if(typeof priceArr[i] != 'undefined'){
+                    prices.push(priceArr[i].innerHTML+'/month');
+                }
+                if(typeof compArr[i] != 'undefined'){
+                    comps.push(compArr[i].innerHTML);
+                }
+            }
+            var latlng = new google.maps.LatLng(40.109, -88.228);
+            var myOptions = {
+                zoom: 15,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            var markers = [];
+            //var infowindows = [];
+            for(var x=0; x<addrs.length; x++){
+                geocoder = new google.maps.Geocoder();
+                console.log(markers.length);
+                if(geocoder){
+                    (function(address,size,price,comp){geocoder.geocode( {'address': address}, function(results, status) {
+                        //console.log(address);
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+
+                                var marker = new google.maps.Marker({
+                                    position: results[0].geometry.location,
+                                    map: map, 
+                                    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                                }); 
+                                markers.push(marker);
+                                var infowindow = new google.maps.InfoWindow({ 
+                                    //content: '<b>Addr: '+address+'</b>'+'<br><b>Size: '+size+'</b>',
+                                    content: '<b>Addr: '+address+'</b>'+'<br><b>Size: '+size+'</b>'+'<br><b>Price: '+price+'</b>'+'<br><b>Company: '+comp+'</b>',
+                                    size: new google.maps.Size(150,50)
+                                });
+                                google.maps.event.addListener(marker, 'click', function() {
+                                    infowindow.open(map,marker);
+                                });
+
+                            } else {
+                                alert("No results found");
+                            }
+                        } else {
+                            alert("Geocode was not successful for the following reason: " + status);
+                        }
+                    });})(addrs[x],sizes[x],prices[x],comps[x]);
+                }
+            }
+            //add control buttons
+            var five_min_div = document.createElement('div');
+            var five_min_walk = new create_five_min_circle(five_min_div, map, markers);
+            five_min_div.index = 1;
+            map.controls[google.maps.ControlPosition.LEFT_CENTER].push(five_min_div);
+            
+            var ten_min_div = document.createElement('div');
+            var ten_min_walk = new create_ten_min_circle(ten_min_div, map, markers);
+            ten_min_div.index = 1;
+            map.controls[google.maps.ControlPosition.LEFT_CENTER].push(ten_min_div);
+            
+            var twenty_min_div = document.createElement('div');
+            var twenty_min_walk = new create_twenty_min_circle(twenty_min_div, map, markers);
+            twenty_min_div.index = 1;
+            map.controls[google.maps.ControlPosition.LEFT_CENTER].push(twenty_min_div);
+            
+            var remove_div = document.createElement('div');
+            var remove_range = new delete_circle(remove_div, map, markers);
+            remove_div.index = 1;
+            map.controls[google.maps.ControlPosition.LEFT_CENTER].push(remove_div);
+    }
+    </script>
+</head>
+
+<body onload="initMap()">
+        <!-- Body content -->
+        <nav class="navbar navbar-default">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"><img src="../img/logo.png" alt=""></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="button navbar-right">
+                  <% if(!user){ %>
+                  <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
+                  <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
+                  <% } %>
+                  <% if(user){ %>
+                  <div>
+                      <a href="/profile" class="btn btn-default"><span class="fa fa-user">Hello, <%= user.username %></span></a>
+                  </div>
+                  <% } %>
+              </div>
+              <ul class="main-nav nav navbar-nav navbar-right">
+                <li class="wow fadeInDown" data-wow-delay="0s"><a class="active" href="/index">Home</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="/search">Apartments</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/lease">Sublease</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="/recommend">Recommendation</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="#">About us</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">      
+                        <div class="search-form wow pulse" data-wow-delay="0.8s" >
+                            <form action="search/result" class="form-inline" method='POST'>
+                                <br/>
+                                <div class="form-group">
+                                    <select name="location" id="loc_id" class="form-control">
+                                        <option selected value='al'>All Locations</option>
+                                        <option value='cc'>Campus Center</option>
+                                        <option value='uc'>Urbana Campus</option>
+                                        <option value='nq'>North Quad Area</option>
+                                        <option value='sq'>South Quad Area</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select name="size" id="size_id" class="form-control">
+                                        <option selected value="a">All Sizes</option>
+                                        <option value="e">Efficiency</option>
+                                        <option value="1">1 Bed</option>
+                                        <option value="2">2 Bed</option>
+                                        <option value="3">3 Bed</option>
+                                        <option value="4">4 Bed</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select name="price" id="pri_id" class="form-control">
+                                        <option selected value='a'>All Prices</option>
+                                        <option value='1'>400 And Below</option>
+                                        <option value='2'>401~600</option>
+                                        <option value='3'>601~800</option>
+                                        <option value='4'>801 And Above</option>
+                                    </select>
+                                </div>
+                                <input type="submit" class="btn" value="Search">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Results</h1>
+                </div>
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-0 col-xs-10 col-xs-offset-0" >
+                    <div id='showResults'>
+                        <div id="map_canvas" style="width:1000px;height:600px;margin:0 auto;"></div>
+                        <br/>
+                        <br/>
+                        <% if(result){ %>
+                        <% for(var i = 0; i<result.length;i++){ %>
+                            <div class="col-lg-4 col-md-6 col-xs-12 thumb"><a class="thumbnail" href="/search/<%= result[i]['pid'] %>"><p name='adda'><%= result[i]['address'] %></p><p name='sizea'><%= result[i]['size'] %>BR</p><p name='compa'>Company: <%= result[i]['company_name'] %></p><p name='pricea'>Price: <%= result[i]['price'] %>/month</p></a></div>
+                        <% } %>
+                        <% } %>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+    
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/wow.js"></script>
+        <script src="../js/main.js"></script>
+</body>
+</html>

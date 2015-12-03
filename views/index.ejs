@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Rent4me Index</title>
+        <meta name="author" content="Ohidul">
+        <meta name="keyword" content="html, css, bootstrap">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/fontello.css">
+        <link rel="stylesheet" href="../css/animate.css">        
+        <link rel="stylesheet" href="../bootstrap-3.3.4-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/owl.carousel.css">
+        <link rel="stylesheet" href="../css/owl.theme.css">
+        <link rel="stylesheet" href="../css/owl.transitions.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <script src="../js/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- Body content -->
+        <nav class="navbar navbar-default">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><img src="../img/logo.png" alt=""></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <div class="button navbar-right">
+                  <% if(!user){ %>
+                  <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
+                  <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
+                  <% } %>
+                  <% if(user){ %>
+                  <div>
+                      <a href="/profile" class="btn btn-default"><span class="fa fa-user">Hello, <%= user.username %></span></a>
+                  </div>
+                  <% } %>
+              </div>
+              <ul class="main-nav nav navbar-nav navbar-right">
+                <li class="wow fadeInDown" data-wow-delay="0s"><a class="active" href="/index">Home</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="/search">Apartments</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/lease">Sublease</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="/recommend">Recommendation</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="#">About us</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="slider-area">
+            <div class="slider">
+                <div id="bg-slider" class="owl-carousel owl-theme">
+                 
+                  <div class="item"><img src="../img/index3.png" alt="Mirror Edge"></div>
+                  <div class="item"><img src="../img/index2.png" alt="The Last of us"></div>
+                  <div class="item"><img src="../img/index1.png" alt="GTA V"></div>
+                 
+                </div>
+            </div>
+            <div class="container slider-content">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                        <h2>Apartment Searching Just Got So Easy</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="container">
+                <div class="row page-title text-center wow zoomInDown" data-wow-delay="1s">
+                    <h5>Our Process</h5>
+                    <h2>How we work for you?</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
+                </div>
+                <div class="row how-it-work text-center">
+                    <div class="col-md-4">
+                        <div class="single-work wow fadeInUp" data-wow-delay="0.8s">
+                            <a href="/search">
+                                <img src="img/how-work1.png" alt="">
+                                <h3>Searching for the best apartment</h3>
+                                <p>Using the outcomes from the job, we will put together a plan for the most effective marketing strategy to get the best results.</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="single-work  wow fadeInUp"  data-wow-delay="0.9s">
+                            <a href="/lease">
+                                <img src="img/how-work2.png" alt="">
+                                <h3>Subleaseing your apartment</h3>
+                                <p>Using the outcomes from the job, we will put together a plan for the most effective marketing strategy to get the best results.</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="single-work wow fadeInUp"  data-wow-delay="1s">
+                            <a href="/contact">
+                                <img src="img/how-work3.png" alt="">
+                                <h3>Contact Us</h3>
+                            <p>Using the outcomes from the job, we will put together a plan for the most effective marketing strategy to get the best results.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="container">
+                <div class="row page-title text-center wow bounce"  data-wow-delay="1s">
+                    <h5>Recommended Apartments</h5>
+                </div>
+                <% if(result){ %>
+                <div class="row jobs">
+                    <div class="col-md-9">
+                        <div class="job-posts table-responsive">
+                            <table class="table">
+                                <% for(var i = 0; i<result.length; i++){ %>
+                                <% if(i%2 == 0) {%>
+                                <tr class="odd wow fadeInUp" data-wow-delay="1s">
+                                    <td class="tbl-title"><h4><%= result[i]['address']%> <br><span class="job-type">ID: <%= result[i]['pid']%></span></h4></td>   
+                                    <td><p><%= result[i]['location'] %></p></td>
+                                    <td><p><%= result[i]['company_name'] %></p></td>
+                                    <td><p>&dollar; <%= result[i]['price'] %></p></td>
+                                    <td class="tbl-apply"><a href="/search/<%= result[i]['pid'] %>">View</a></td>
+                                </tr>
+                                <% } %>
+                                <% if(i%2 ==1) { %>
+                                <tr class="even wow fadeInUp" data-wow-delay="1s">
+                                    <td class="tbl-title"><h4><%= result[i]['address']%> <br><span class="job-type">ID: <%= result[i]['pid']%></span></h4></td>   
+                                    <td><p><%= result[i]['location'] %></p></td>
+                                    <td><p><%= result[i]['company_name'] %></p></td>
+                                    <td><p>&dollar; <%= result[i]['price'] %></p></td>
+                                    <td class="tbl-apply"><a href="/search/<%= result[i]['pid'] %>">View</a></td>
+                                </tr>
+                                <% } %>
+                                <% } %>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-3 hidden-sm">
+                        <div class="job-add wow fadeInRight" data-wow-delay="1.5s">
+                            <h2>Seeking a job?</h2>
+                            <a href="#">Create a Account</a>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <hr>
+		
+        <script src="../js/jquery-2.1.3.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/wow.js"></script>
+        <script src="../js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Search page results</title>
+        <meta name="description" content="company is a free job board template">
+        <meta name="author" content="Ohidul">
+        <meta name="keyword" content="html, css, bootstrap, job-board">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="questionmark.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/fontello.css">
+        <link rel="stylesheet" href="../css/animate.css">        
+        <link rel="stylesheet" href="../bootstrap-3.3.4-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/owl.carousel.css">
+        <link rel="stylesheet" href="../css/owl.theme.css">
+        <link rel="stylesheet" href="../css/owl.transitions.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <script src="../js/modernizr-2.6.2.min.js"></script>
+        
+        <!-- avoiding bootstrap here Do not delete this -->
+        <style>
+        my-input {
+            height: 30px;
+            max-width: 80%;
+        } 
+        </style>
+        
+        
+    </head>
+    <body>
+
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- Body content -->
+        <nav class="navbar navbar-default">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"><img src="../img/logo.png" alt=""></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="main-nav nav navbar-nav navbar-right">
+                <li class="wow fadeInDown" data-wow-delay="0s"><a class="active" href="/index">Home</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="/search">Apartments</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.2s"><a href="/lease">Sublease</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.3s"><a href="/recommend">Recommendation</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.5s"><a href="#">About us</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">      
+                        <div class="search-form wow pulse" data-wow-delay="0.8s" >
+                            <h2 class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">Update Apartment Info</h2>
+                            <br></br>
+                            <form action="updateAndDelete/update" class="form-inline" method='POST' onsubmit="return checkForm(this);"> 
+                                <div class="form-group">
+                                    <input type="text" name="pid" placeholder="enter the property id" class="form-control"/>
+                                </div>
+                                <br></br>
+                                <div class="form-group" >
+                                    <select name="location" id="loc_id" class="form-control">
+                                        <option selected value='cc'>Campus Center</option>
+                                        <option value='uc'>Urbana Campus</option>
+                                        <option value='nq'>North Quad Area</option>
+                                        <option value='sq'>South Quad Area</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select name="size" id="size_id" class="form-control">
+                                        <option selected value="e">Efficiency</option>
+                                        <option value="1">1 Bed</option>
+                                        <option value="2">2 Bed</option>
+                                        <option value="3">3 Bed</option>
+                                        <option value="4">4 Bed</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="price" placeholder="enter the price" class="form-control"/>
+                                </div>
+                                <br><br/>
+                                <div class="form-group">
+                                    <input type="text" name="address" placeholder="enter the address" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="comp_name" placeholder="enter the company name" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="img_url" placeholder="enter the image url" class="form-control"/>
+                                </div>
+                                <input type="submit" class="btn" value="Update">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="container">
+                <div class="row page-title text-center wow bounce"  data-wow-delay="1s">
+                    <h5>All Apartments</h5>
+                </div>
+                <div class="row jobs">
+                    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
+                        <div class="job-posts table-responsive">
+                            <table class="table">
+                                <% for(var i = 0; i < result.length; i++){ %>
+                                <% if (i%2 == 0){ %>
+                                <tr class="odd wow fadeInUp" data-wow-delay="1s">
+                                    <td class="tbl-title"><h4><%= result[i]['address']%> <br><span class="job-type">ID: <%= result[i]['pid']%></span></h4></td>   
+                                    <td><p><%= result[i]['location'] %></p></td>
+                                    <td><p><%= result[i]['company_name'] %></p></td>
+                                    <td><p>&dollar; <%= result[i]['price'] %></p></td>
+                                    <td>
+                                        <form action='updateAndDelete/delete', method='POST'>
+                                            <button class='btn' name="id" value="<%= result[i]['pid'] %>">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                <% if (i%2 == 1){ %>
+                                <tr class="even wow fadeInUp" data-wow-delay="1s">
+                                    <td class="tbl-title"><h4><%= result[i]['address']%> <br><span class="job-type">ID: <%= result[i]['pid']%></span></h4></td>
+                                    <td><p><%= result[i]['location'] %></p></td>
+                                    <td><p><%= result[i]['company_name'] %></p></td>
+                                    <td><p>&dollar; <%= result[i]['price'] %></p></td>
+                                    <td>
+                                        <form action='updateAndDelete/delete', method='POST'>
+                                            <button class='btn' name="id" value="<%= result[i]['pid'] %>">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                <% } %>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <script type="text/javascript">
+            function checkForm(form)
+            {
+                // validation fails if the input is blank
+                console.log("hey");
+                if(form.pid.value == "" ) {
+                    alert("Error: Input is empty!");
+                    form.pid.focus();
+                    return false;
+                }
+                if(form.price.value == "" ) {
+                    alert("Error: Input is empty!");
+                    form.price.focus();
+                    return false;
+                }
+                if(form.address.value == "" ) {
+                    alert("Error: Input is empty!");
+                    form.address.focus();
+                    return false;
+                }
+                if(form.comp_name.value == "") {
+                    alert("Error: Input is empty!");
+                    form.comp_name.focus();
+                    return false;
+                }
+                if(form.img_url.value == "") {
+                    alert("Error: Input is empty!");
+                    form.img_url.focus();
+                    return false;
+                }
+                // regular expression to match only alphanumeric characters and spaces
+                var re = /^[\w ]+$/;
+                // validation fails if the input doesn't match our regular expression
+                if(isNaN(form.pid.value)) {
+                    alert("Error: Input should be number!");
+                    form.pid.focus();
+                    return false;
+                }
+                if(isNaN(form.price.value)) {
+                    alert("Error: Input should be number!");
+                    form.price.focus();
+                    return false;
+                }
+                if(!re.test(form.address.value)) {
+                    alert("Error: Input contains invalid characters!");
+                    form.address.focus();
+                    return false;
+                }
+                if(!re.test(form.comp_name.value)) {
+                    alert("Error: Input contains invalid characters!");
+                    form.comp_name.focus();
+                    return false;
+                }
+                /*
+                if(!re.test(form.img_url.value)) {
+                    alert("Error: Input contains invalid characters!");
+                    form.img_url.focus();
+                    return false;
+                }
+                */
+                // validation was successful
+                return true;
+            }
+        </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/wow.js"></script>
+        <script src="../js/main.js"></script>
+    </body>
+</html>
+
