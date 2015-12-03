@@ -7,7 +7,7 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 
-router.post('/result',function(req, res){
+router.post('/',function(req, res){
     //console.log('yes');
     var price = req.body.price;
     var size = req.body.size;

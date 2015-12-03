@@ -20,7 +20,7 @@ var utils = {
   },
   'streetParser': function(addr){
     var content = addr.split(' ');
-    return content[1];
+    return content[2];
   }
 };
 

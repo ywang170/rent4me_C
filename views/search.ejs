@@ -270,19 +270,28 @@
             var compArr = document.getElementsByName("compa");
             var priceArr = document.getElementsByName("pricea");
             var sizeArr = document.getElementsByName("sizea");
-            for(var i =0;i<para.length;i++){
+            for(var i =0;i<10;i++){
                 console.log(i);
                 if(typeof para[i] != 'undefined'){
-                    addrs.push(para[i].innerHTML+', IL');
-                }
-                if(typeof sizeArr[i] != 'undefined'){
-                    sizes.push(sizeArr[i].innerHTML+'BR');
-                }
-                if(typeof priceArr[i] != 'undefined'){
-                    prices.push(priceArr[i].innerHTML+'/month');
-                }
-                if(typeof compArr[i] != 'undefined'){
-                    comps.push(compArr[i].innerHTML);
+                    var add = 1;
+                    var addr = para[i].innerHTML+', IL';
+                    for(var j =0; j<addrs.length;j++){
+                        if(addrs[j]==addr){
+                            add = 0;
+                        }
+                    }
+                    if(add == 1){
+                        addrs.push(addr);
+                        if(typeof sizeArr[i] != 'undefined'){
+                            sizes.push(sizeArr[i].innerHTML);
+                        }
+                        if(typeof priceArr[i] != 'undefined'){
+                            prices.push(priceArr[i].innerHTML);
+                        }
+                        if(typeof compArr[i] != 'undefined'){
+                            comps.push(compArr[i].innerHTML);
+                        }
+                    }
                 }
             }
             var latlng = new google.maps.LatLng(40.109, -88.228);
@@ -311,7 +320,7 @@
                                 markers.push(marker);
                                 var infowindow = new google.maps.InfoWindow({ 
                                     //content: '<b>Addr: '+address+'</b>'+'<br><b>Size: '+size+'</b>',
-                                    content: '<b>Addr: '+address+'</b>'+'<br><b>Size: '+size+'</b>'+'<br><b>Price: '+price+'</b>'+'<br><b>Company: '+comp+'</b>',
+                                    content: '<b>Addr: '+address+'</b>'+'<br><b>Size: '+size+'</b>'+'<br><b>'+price+'</b>'+'<br><b>'+comp+'</b>',
                                     size: new google.maps.Size(150,50)
                                 });
                                 google.maps.event.addListener(marker, 'click', function() {
@@ -393,7 +402,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">      
                         <div class="search-form wow pulse" data-wow-delay="0.8s" >
-                            <form action="search/result" class="form-inline" method='POST'>
+                            <form action="search" class="form-inline" method='POST'>
                                 <br/>
                                 <div class="form-group">
                                     <select name="location" id="loc_id" class="form-control">

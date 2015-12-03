@@ -71,17 +71,19 @@
             <div class="slider">
                 <div id="bg-slider" class="owl-carousel owl-theme">
                  
-                  <div class="item"><img src="../img/index3.png" alt="Mirror Edge"></div>
-                  <div class="item"><img src="../img/index2.png" alt="The Last of us"></div>
-                  <div class="item"><img src="../img/index1.png" alt="GTA V"></div>
+                  <div class="item"><img src="../img/index1.png" alt="idx1"></div>
+                  <div class="item"><img src="../img/index2.png" alt="idx2"></div>
+                  <div class="item"><img src="../img/index3.png" alt="idx3"></div>
+                  <div class="item"><img src="../img/index4.png" alt="idx3"></div>
+                  <div class="item"><img src="../img/index5.png" alt="idx3"></div>
                  
                 </div>
             </div>
             <div class="container slider-content">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
-                        <h2>Apartment Searching Just Got So Easy</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam velit adipisci quibusdam aliquam teneturo!</p>
+                        <h2>Welcome to Rent4me!</h2>
+                        <p>Making finding apartments so easy.</p>
                     </div>
                 </div>
             </div>
@@ -92,33 +94,33 @@
                 <div class="row page-title text-center wow zoomInDown" data-wow-delay="1s">
                     <h5>Our Process</h5>
                     <h2>How we work for you?</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae illum dolorem, rem officia, id explicabo sapiente</p>
+                    <p>Enter your preferences, and apartments show up!</p>
                 </div>
                 <div class="row how-it-work text-center">
                     <div class="col-md-4">
                         <div class="single-work wow fadeInUp" data-wow-delay="0.8s">
                             <a href="/search">
-                                <img src="img/how-work1.png" alt="">
+                                <img src="../img/111.png" HEIGHT="90" WIDTH="95" alt="">
                                 <h3>Searching for the best apartment</h3>
-                                <p>Using the outcomes from the job, we will put together a plan for the most effective marketing strategy to get the best results.</p>
+                                <p>We provide convinient searching functions and advanced results visualization.</p>
                             </a>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="single-work  wow fadeInUp"  data-wow-delay="0.9s">
                             <a href="/lease">
-                                <img src="img/how-work2.png" alt="">
+                                <img src="../img/222.png" HEIGHT="90" WIDTH="95" alt="">
                                 <h3>Subleaseing your apartment</h3>
-                                <p>Using the outcomes from the job, we will put together a plan for the most effective marketing strategy to get the best results.</p>
+                                <p>You can update your leasing information anywhere, anytime.</p>
                             </a>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="single-work wow fadeInUp"  data-wow-delay="1s">
                             <a href="/contact">
-                                <img src="img/how-work3.png" alt="">
+                                <img src="../img/333.png" HEIGHT="90" WIDTH="95" alt="">
                                 <h3>Contact Us</h3>
-                            <p>Using the outcomes from the job, we will put together a plan for the most effective marketing strategy to get the best results.</p>
+                            <p>To contact us, just go to 1210 Siebel Center, and Steve will be at your service!</p>
                             </a>
                         </div>
                     </div>
@@ -128,7 +130,7 @@
 
             <div class="container">
                 <div class="row page-title text-center wow bounce"  data-wow-delay="1s">
-                    <h5>Recommended Apartments</h5>
+                    <h3>Recommended Apartments</h3>
                 </div>
                 <% if(result){ %>
                 <div class="row jobs">
@@ -139,7 +141,7 @@
                                 <% if(i%2 == 0) {%>
                                 <tr class="odd wow fadeInUp" data-wow-delay="1s">
                                     <td class="tbl-title"><h4><%= result[i]['address']%> <br><span class="job-type">ID: <%= result[i]['pid']%></span></h4></td>   
-                                    <td><p><%= result[i]['location'] %></p></td>
+                                    <td><p><%= result[i]['size'] %>BR</p></td>
                                     <td><p><%= result[i]['company_name'] %></p></td>
                                     <td><p>&dollar; <%= result[i]['price'] %></p></td>
                                     <td class="tbl-apply"><a href="/search/<%= result[i]['pid'] %>">View</a></td>
@@ -148,7 +150,7 @@
                                 <% if(i%2 ==1) { %>
                                 <tr class="even wow fadeInUp" data-wow-delay="1s">
                                     <td class="tbl-title"><h4><%= result[i]['address']%> <br><span class="job-type">ID: <%= result[i]['pid']%></span></h4></td>   
-                                    <td><p><%= result[i]['location'] %></p></td>
+                                    <td><p><%= result[i]['size'] %>BR</p></td>
                                     <td><p><%= result[i]['company_name'] %></p></td>
                                     <td><p>&dollar; <%= result[i]['price'] %></p></td>
                                     <td class="tbl-apply"><a href="/search/<%= result[i]['pid'] %>">View</a></td>
@@ -156,12 +158,6 @@
                                 <% } %>
                                 <% } %>
                             </table>
-                        </div>
-                    </div>
-                    <div class="col-md-3 hidden-sm">
-                        <div class="job-add wow fadeInRight" data-wow-delay="1.5s">
-                            <h2>Seeking a job?</h2>
-                            <a href="#">Create a Account</a>
                         </div>
                     </div>
                 </div>
