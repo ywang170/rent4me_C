@@ -50,6 +50,7 @@ console.log('The magic happens on port ' + port);
 
 
 app.get('/search', function(req, res) {
+	console.log('3');
     if(typeof req.user === 'undefined'){
         res.render('search',{user: null, result: null});
     }
@@ -60,6 +61,7 @@ app.get('/search', function(req, res) {
 
 //define response to path '/lease' GET
 app.get('/lease', function(req, res){
+	console.log('request send');
     db.readAll(function(err, rows){
         if(typeof req.user === 'undefined'){
 		  res.render('lease',{user: null, result: rows});

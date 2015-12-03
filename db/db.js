@@ -1,5 +1,5 @@
 var db = require('mysql2');
-var pool = db.createPool('mysql://root:951753@http://ec2-52-89-20-60.us-west-2.compute.amazonaws.com/:3306/rent4me');
+var pool = db.createPool('mysql://root:951753@127.0.0.1:3306/rent4me');
 var utils = require('../utils/utils.js');
 var request = require('request');
 
@@ -70,9 +70,12 @@ db.read = function(id, callback) {
 };
 
 db.readAll = function(callback) {
+	console.log('1');
   pool.getConnection(function(err, conn){
+	console.log('2');
     conn.query('SELECT * FROM Property', function(err, rows) {
       conn.release();
+	console.log('test');
       callback(err, rows);
     });
   });
